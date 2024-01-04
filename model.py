@@ -1,12 +1,10 @@
 """Models for movie ratings app."""
 
 from flask_sqlalchemy import SQLAlchemy
-
-
-# app = Flask(__name__)
+from sqlalchemy import Column, Integer
+from server import app
 
 db = SQLAlchemy()
-
 
 class User(db.Model):
     """A user."""
@@ -14,8 +12,8 @@ class User(db.Model):
     __tablename__ = "users"
 
     user_id = db.Column(db.Integer,
-                        autoincrement=True,
-                        primary_key=True)
+                        primary_key=True,
+                        autoincrement=True)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
 
