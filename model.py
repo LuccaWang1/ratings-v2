@@ -3,6 +3,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer
 from server import app
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -34,7 +35,7 @@ class Movie(db.Model):
     rating = db.relationship("Rating", back_populates="movie")
 
     def __repr__(self):
-        return f'<Movie movie id={self.movie_id} title={self.title}>'
+        return f'<Movie Table✨ movie_id={self.movie_id} title={self.title}>'
 
 class Rating(db.Model):
     """a movie rating"""
@@ -45,6 +46,7 @@ class Rating(db.Model):
     score = db.Column(db.Integer)
     movie_id = db.Column(db.Integer, db.ForeignKey("movies.movie_id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"))
+    comment = db.Column(db.String, nullable=False)
 
     movie = db.relationship("Movie", back_populates="rating")
     user = db.relationship("User", back_populates="rating")
